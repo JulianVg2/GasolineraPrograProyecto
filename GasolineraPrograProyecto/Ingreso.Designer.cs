@@ -156,6 +156,7 @@
             this.btnPanel.TabIndex = 23;
             this.btnPanel.Text = "Panel De Control";
             this.btnPanel.UseVisualStyleBackColor = true;
+            this.btnPanel.Click += new System.EventHandler(this.btnPanel_Click);
             // 
             // btnVolver
             // 

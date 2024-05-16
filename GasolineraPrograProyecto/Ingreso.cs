@@ -16,5 +16,10 @@ namespace GasolineraPrograProyecto
         {
             InitializeComponent();
         }
+
+        private void btnPanel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
