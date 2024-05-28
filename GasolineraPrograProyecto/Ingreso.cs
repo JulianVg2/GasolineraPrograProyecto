@@ -61,7 +61,7 @@ namespace GasolineraPrograProyecto
         void GuardadoDatos()
         {
             string DatosGuardar = JsonConvert.SerializeObject(datos);
-            string Archivo = @"C:\Users\Julian Vg\source\repos\GasolineraPrograProyecto\GasolineraPrograProyecto\bin\Debug\Datos.json";
+            string Archivo = @"C:\Users\kenri\OneDrive\Desktop\Proyecto\GasolineraPrograProyecto\bin\Debug";
             System.IO.File.WriteAllText(Archivo, DatosGuardar);
         }
 
@@ -69,16 +69,17 @@ namespace GasolineraPrograProyecto
         {
             try
             {
-                serialPort.Open();
-                string jsonData = JsonConvert.SerializeObject(dato);
-                serialPort.WriteLine(jsonData);
-                serialPort.Close();
+                if (serialPort.IsOpen)
+                {
+                    string jsonData = JsonConvert.SerializeObject(dato);
+                    MessageBox.Show("Enviando JSON: " + jsonData); // Para verificar el JSON
+                    serialPort.WriteLine(jsonData);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show("Error al enviar datos: " + ex.Message);
             }
-
         }
         void limpieza()
         {
