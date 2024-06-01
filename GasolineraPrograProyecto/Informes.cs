@@ -16,6 +16,7 @@ namespace GasolineraPrograProyecto
     public partial class Informes : Form
     {
         List<clsDatos> Datoss = new List<clsDatos>();
+        
         public Informes()
         {
             InitializeComponent();
@@ -61,7 +62,7 @@ namespace GasolineraPrograProyecto
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string fileJSon = File.ReadAllText(@"C:\Users\Julian Vg\source\repos\GasolineraPrograProyecto\GasolineraPrograProyecto\bin\Debug\Datos.json");
+            string fileJSon = File.ReadAllText(@"C:\Users\kenri\OneDrive\Desktop\Proyecto\GasolineraPrograProyecto\bin\Debug\Datos.json");
             DataTable dt = (DataTable)JsonConvert.DeserializeObject(fileJSon,typeof(DataTable));
             dataGridView1.DataSource = dt;
 
@@ -87,19 +88,18 @@ namespace GasolineraPrograProyecto
             cargarClientes();
             List<clsDatos> reportes = new List<clsDatos>();
             string busqueda = "PrepagoLleno";
-            clsDatos tanquelleno = Datoss.FirstOrDefault(p => p.Opcion == busqueda);
+            IEnumerable<clsDatos> tanquesLlenos = Datoss.Where(p => p.Opcion == busqueda);
 
-            if (tanquelleno != null)
+            foreach (clsDatos tanquelleno in tanquesLlenos)
             {
                 clsDatos reporte = new clsDatos
                 {
                     Nit = tanquelleno.Nit,
                     Nombre = tanquelleno.Nombre,
                     Fecha = tanquelleno.Fecha,
-                    Opcion =tanquelleno.Opcion,
+                    Opcion = tanquelleno.Opcion,
                     Tipogasolina = tanquelleno.Tipogasolina,
                     CantidadServida = tanquelleno.CantidadServida,
-
                 };
                 reportes.Add(reporte);
             }
@@ -107,7 +107,6 @@ namespace GasolineraPrograProyecto
             dataGridView3.DataSource = null;
             dataGridView3.DataSource = reportes;
             dataGridView3.Refresh();
-
 
         }
 
@@ -118,9 +117,9 @@ namespace GasolineraPrograProyecto
             cargarClientes();
             List<clsDatos> reportespre = new List<clsDatos>();
             string busqueda = "Prepago";
-            clsDatos Prepago = Datoss.FirstOrDefault(p => p.Opcion == busqueda);
+            IEnumerable<clsDatos> prepagos = Datoss.Where(p => p.Opcion == busqueda);
 
-            if (Prepago != null)
+            foreach (clsDatos Prepago in prepagos)
             {
                 clsDatos reporte = new clsDatos
                 {
@@ -129,10 +128,10 @@ namespace GasolineraPrograProyecto
                     Fecha = Prepago.Fecha,
                     Opcion = Prepago.Opcion,
                     Tipogasolina = Prepago.Tipogasolina,
-
                 };
                 reportespre.Add(reporte);
             }
+
 
             dataGridView2.DataSource = null;
             dataGridView2.DataSource = reportespre;
