@@ -62,7 +62,7 @@ namespace GasolineraPrograProyecto
 
         private void button2_Click(object sender, EventArgs e)
         {
-            string fileJSon = File.ReadAllText(@"C:\Users\kenri\OneDrive\Desktop\Proyecto\GasolineraPrograProyecto\bin\Debug\Datos.json");
+            string fileJSon = File.ReadAllText(@"C:\Users\Julian Vg\source\repos\GasolineraPrograProyecto\GasolineraPrograProyecto\bin\Debug\Datos.json");
             DataTable dt = (DataTable)JsonConvert.DeserializeObject(fileJSon,typeof(DataTable));
             dataGridView1.DataSource = dt;
 
